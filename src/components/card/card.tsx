@@ -1,5 +1,5 @@
 import { Character } from '../../model/characters';
-import { useCharacters } from '../hook/use.characters';
+import { useCharacters } from '../../hook/use.characters';
 
 type Props = {
   info: Character;

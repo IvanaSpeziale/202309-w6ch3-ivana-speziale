@@ -10,14 +10,14 @@ export class ApiRepo {
     return response.json();
   }
 
-  async setCharacter(
+  async updateCharacter(
     id: Character['id'],
-    setCharacter: Partial<Character>
+    updateCharacter: Partial<Character>
   ): Promise<Character> {
     const finalUrl = `${this.apiUrl}/${id}`;
     const response = await fetch(finalUrl, {
       method: 'PATCH',
-      body: JSON.stringify(setCharacter),
+      body: JSON.stringify(updateCharacter),
       headers: {
         'Content-Type': 'application/json',
       },
