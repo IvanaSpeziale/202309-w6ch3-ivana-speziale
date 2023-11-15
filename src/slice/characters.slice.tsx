@@ -20,45 +20,36 @@ const charactersSlice = createSlice({
     builder.addCase(loadCharactersThunk.pending, (state: CharactersState) => {
       state.charactersState = 'loading';
       return state;
-    }),
-      builder.addCase(
-        loadCharactersThunk.fulfilled,
-        (state: CharactersState, { payload }: PayloadAction<Character[]>) => {
-          state.characters = payload;
-          state.charactersState = 'idle';
-          return state;
-        }
-      ),
-      builder.addCase(
-        loadCharactersThunk.rejected,
-        (state: CharactersState) => {
-          state.charactersState = 'error';
-          return state;
-        }
-      ),
-      builder.addCase(
-        updateCharacterThunk.pending,
-        (state: CharactersState) => {
-          state.charactersState = 'loading';
-          return state;
-        }
-      ),
-      builder.addCase(
-        updateCharacterThunk.rejected,
-        (state: CharactersState) => {
-          state.charactersState = 'error';
-          return state;
-        }
-      ),
-      builder.addCase(
-        updateCharacterThunk.fulfilled,
-        (state: CharactersState, { payload }: PayloadAction<Character>) => {
-          state.characters[
-            state.characters.findIndex((item) => item.id === payload.id)
-          ] = payload;
-          return state;
-        }
-      );
+    });
+    builder.addCase(
+      loadCharactersThunk.fulfilled,
+      (state: CharactersState, { payload }: PayloadAction<Character[]>) => {
+        state.characters = payload;
+        state.charactersState = 'idle';
+        return state;
+      }
+    );
+    builder.addCase(loadCharactersThunk.rejected, (state: CharactersState) => {
+      state.charactersState = 'error';
+      return state;
+    });
+    builder.addCase(updateCharacterThunk.pending, (state: CharactersState) => {
+      state.charactersState = 'loading';
+      return state;
+    });
+    builder.addCase(updateCharacterThunk.rejected, (state: CharactersState) => {
+      state.charactersState = 'error';
+      return state;
+    });
+    builder.addCase(
+      updateCharacterThunk.fulfilled,
+      (state: CharactersState, { payload }: PayloadAction<Character>) => {
+        state.characters[
+          state.characters.findIndex((item) => item.id === payload.id)
+        ] = payload;
+        return state;
+      }
+    );
   },
 });
 
