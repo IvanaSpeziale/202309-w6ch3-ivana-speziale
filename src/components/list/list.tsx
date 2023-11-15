@@ -1,9 +1,14 @@
 import { useEffect } from 'react';
 import { Card } from '../card/card';
-import { useCharacters } from '../hook/use.characters';
+import { RootState } from '../../store/characters.store';
+import { useSelector } from 'react-redux';
+import { useCharacters } from '../../hook/use.characters';
 
 export function List() {
-  const { characters, loadCharacters } = useCharacters();
+  const { characters } = useSelector(
+    (state: RootState) => state.charactersState
+  );
+  const { loadCharacters } = useCharacters();
 
   useEffect(() => {
     loadCharacters();
